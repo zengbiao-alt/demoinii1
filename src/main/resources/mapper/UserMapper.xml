@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--注1：此文件要与UserMapper.java文件放在相同目录，且文件名要与接口文件名相同 注2：namespace要设定为接口名：com.dr.mapper.UserMapper -->
+<mapper namespace="com.example.demoinii.mapper.LoginMapper">
+    <select id="userLogin" parameterType="com.example.demoinii.dto.User" resultType="com.example.demoinii.dto.User">
+ SELECT *
+ FROM users
+ WHERE userId=#{userId}
+and password=#{password}
+</select>
+</mapper>
