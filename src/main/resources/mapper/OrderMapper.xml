@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demoinii.mapper.OrderMapper">
+    <insert id="saveOrders">
+        insert into orders(orderId,orderDate,
+                           userId,hpId,smId,state)
+        values (#{orderId,jdbcType=INTEGER }, #{orderDate,jdbcType=DATE},
+                #{userId,jdbcType=VARCHAR}, #{hpId,jdbcType=INTEGER},#{smId,jdbcType=INTEGER},#{state,jdbcType=INTEGER})
+    </insert>
+    <delete id="removeOrders">
+        delete from orders where orderId=#{orderId};
+    </delete>
+
+    <select id="findRegistByPhone" resultType="java.lang.Integer">
+        select OrderId,OrderDate from orders where userId=#{userId};
+    </select>
+    <select id="listOrdersByUserId" resultType="com.example.demoinii.po.Orders">
+        select orderId,orderDate,hpId,smId from orders where userId=#{userId} and state=#{state};
+    </select>
+    <select id="getOrdersById" resultType="com.example.demoinii.po.Orders">
+        select orderId,orderDate,
+               userId,hpId,smId,state
+from orders where orderId=#{orderId}
+    </select>
+</mapper>

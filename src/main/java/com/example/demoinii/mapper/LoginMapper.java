@@ -1,11 +1,12 @@
 package com.example.demoinii.mapper;
 
-import com.example.demoinii.dto.User;
-import org.apache.ibatis.annotations.Mapper;
+import com.example.demoinii.po.User;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
-@Mapper
+@Repository
 public interface LoginMapper {
-//    @Select("select realName,sex,birthday,userType from users where userId= #{userId} and password = #{password}")
-    public User userLogin(String userId,String password);
-
+    User userLogin(@Param("userId") String userId, @Param("password") String password);
+    User userFindAll(@Param("userId") String useId);
+    int userRegist(User user);
 }
