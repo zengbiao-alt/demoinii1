@@ -1,9 +1,9 @@
 package com.example.demoinii.service;
 
-import com.example.demoinii.po.User;
+import com.example.demoinii.po.Users;
 
 public interface LoginService {
-    public int  userRegist(User user);
-    public User userLogin(User user);
-    public User userFindAll(User user);
+    public int  userRegist(Users user);
+    public Users userLogin(Users user);
+    public Users getUsersById(Users user);
 }

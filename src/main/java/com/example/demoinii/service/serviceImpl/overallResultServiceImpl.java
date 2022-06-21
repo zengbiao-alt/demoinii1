@@ -28,7 +28,14 @@ public class overallResultServiceImpl implements overallResultService {
         {
             throw new MallExcetion(MallExcptionEum.REGIST_PHONE);
         }
-        return overallresultMapper.saveOverallResult(overallResults);
+        else {
+            int status = overallresultMapper.saveOverallResult(overallResults);
+            if (status != 0) {
+                throw new MallExcetion(MallExcptionEum.overallResult_EXIST);
+            }
+            return  status;
+        }
+
     }
 
     @Override
