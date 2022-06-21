@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demoinii.mapper.ciReportMapper">
-    <resultMap type="com.example.demoinii.po.Orders" id="OrderIdAndCide" >
+    <resultMap type="com.example.demoinii.po.Cireport" id="OrderIdAndCide" >
         <id column="orderId" property="orderId" />
         <collection property="cidetailedreports" ofType="com.example.demoinii.po.Cidetailedreport" javaType="list">
             <id column="cidrId" property="cidrId" />
@@ -19,7 +19,8 @@
 
         </collection>
     </resultMap>
+    <insert id="createReportTemplate"></insert>
     <select id="listCiReport" resultMap="OrderIdAndCide">
-        select cidetailedreport.* from orders,cidetailedreport where orders.orderId=cidetailedreport.orderId
+        select cidetailedreport.* from cireport,cidetailedreport where cireport.orderId=cidetailedreport.orderId
     </select>
 </mapper>

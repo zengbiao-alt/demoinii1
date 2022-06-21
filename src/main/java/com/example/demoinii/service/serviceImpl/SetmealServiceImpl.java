@@ -9,6 +9,8 @@ import com.example.demoinii.service.SetmealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SetmealServiceImpl implements SetmealService {
     @Autowired
@@ -17,5 +19,11 @@ public class SetmealServiceImpl implements SetmealService {
     public Setmeal selectSetBySeId(Setmeal setmeal) {
       Setmeal setmeal1=setmealMapper.selectSetBySeId(setmeal);
       return setmeal1;
+    }
+
+    @Override
+    public List<Setmeal> listSetmeal() {
+        List<Setmeal> setmeal=setmealMapper.listSetmeal();
+        return setmeal;
     }
 }

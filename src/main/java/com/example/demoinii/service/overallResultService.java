@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface overallResultService {
     List<overallResult> SelectOverResultById(overallResult overallresult);
+    int saveOverallResult(overallResult overallResult);
+    int updateOverallResult(overallResult overallResults);
+    int removeOverallResult(overallResult overallResults);
 }

@@ -17,4 +17,19 @@ public class overallResultServiceImpl implements overallResultService {
     public List<overallResult> SelectOverResultById(overallResult overallresult) {
        return overallresultMapper.SelectOverResultById(overallresult);
     }
+
+    @Override
+    public int  saveOverallResult(overallResult overallResults) {
+        return overallresultMapper.saveOverallResult(overallResults);
+    }
+
+    @Override
+    public int updateOverallResult(overallResult overallResults) {
+      return overallresultMapper.updateOverallResult(overallResults);
+    }
+
+    @Override
+    public int removeOverallResult(overallResult overallResults) {
+        return overallresultMapper.removeOverallResult(overallResults);
+    }
 }

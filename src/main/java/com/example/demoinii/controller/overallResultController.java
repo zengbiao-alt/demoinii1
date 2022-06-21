@@ -27,4 +27,24 @@ public class overallResultController {
        List<overallResult> overallresult1 = overallResultServices.SelectOverResultById(overallresult);
         return Result.success(overallresult1);
     }
+    @PostMapping("saveOverallResult")
+    public  Result saveOverallResult(@RequestBody overallResult overallResults) {
+        //根据体检预约编号查询总检结论
+      int overallResultList = overallResultServices.saveOverallResult(overallResults);
+        return Result.success(overallResultList);
+    }
+    @PostMapping("updateOverallResult")
+    public Result updateOverallResult(@RequestBody overallResult overallResults)
+    {
+        //更新总检结论信息
+        int overallResultList=overallResultServices.updateOverallResult(overallResults);
+        return Result.success(overallResultList);
+    }
+    @PostMapping("removeOverallResult")
+    public Result removeOverallResult(@RequestBody overallResult overallResults)
+    {
+        //根据总检信息表编号OverallResult对象
+        int overallResultList=overallResultServices.removeOverallResult(overallResults);
+        return Result.success(overallResultList);
+    }
 }

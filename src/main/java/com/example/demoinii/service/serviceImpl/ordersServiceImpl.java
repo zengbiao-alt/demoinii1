@@ -2,7 +2,10 @@ package com.example.demoinii.service.serviceImpl;
 
 import com.example.demoinii.mapper.OrderMapper;
 import com.example.demoinii.po.Orders;
+import com.example.demoinii.po.OrdersPageRequestDto;
 import com.example.demoinii.service.ordersService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +40,21 @@ public class ordersServiceImpl implements ordersService {
     public Orders getOrdersById(Orders orders) {
         return  orderMapper.getOrdersById(orders);
     }
+    @Override
+    public OrdersPageRequestDto listOrders(Integer pageNum, Integer pageSize) {
+        //开启分页
+        PageHelper.startPage(pageNum, pageSize, "orderId");
+        //查询所有的数据
+        List<Orders> orders = orderMapper.listOrders(null);
+        OrdersPageRequestDto ordersPageRequestDto=new OrdersPageRequestDto();
+        ordersPageRequestDto.setList(orders);
+        return  ordersPageRequestDto;
+    }
+
+    @Override
+    public int updateOrdersState(Orders orders) {
+        return  orderMapper.updateOrdersState(orders);
+    }
+
 
 }

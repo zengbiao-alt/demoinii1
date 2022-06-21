@@ -8,4 +8,8 @@ import java.util.List;
 @Repository
 public interface overallResultMapper {
     List<overallResult> SelectOverResultById(overallResult overallresult);
+
+    int  saveOverallResult(overallResult overallResults);
+    int updateOverallResult(overallResult overallResult);
+    int removeOverallResult(overallResult overallResult);
 }

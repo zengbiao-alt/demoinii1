@@ -3,8 +3,8 @@ package com.example.demoinii.controller;
 import com.example.demoinii.common.Result;
 import com.example.demoinii.exception.MallExcptionEum;
 import com.example.demoinii.po.Orders;
+import com.example.demoinii.po.OrdersPageRequestDto;
 import com.example.demoinii.service.ordersService;
-import com.example.demoinii.service.overallResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -56,6 +56,25 @@ public class ordersController {
     {
         Orders orders1=orderservice.getOrdersById(orders);
         return Result.success(orders1);
+    }
+
+    //根据体检预约编号更新状态
+    @PostMapping("updateOrdersState")
+    public Result updateOrdersState(@RequestBody Orders orders)
+    {
+        int status=orderservice.updateOrdersState(orders);
+        if(status==0)
+        {
+            return Result.error(MallExcptionEum.UPDATE_FAILED);
+        }
+        return Result.success(status);
+    }
+
+    @PostMapping("listOrders")
+    public Result listOrders(@RequestBody OrdersPageRequestDto ordersPageRequestDto)
+    {
+        OrdersPageRequestDto ordersPageRequestDto1=orderservice.listOrders(ordersPageRequestDto.getPageNum(),ordersPageRequestDto.getPageSize());
+        return  Result.success(ordersPageRequestDto1);
     }
 
 }

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @ToString
 @AllArgsConstructor
@@ -23,4 +25,5 @@ public class Cidetailedreport {
     private int isError;//此项是否异常(0:无异常:1:异常)
     private int ciId;//所属检查项报告编号
     private int orderId;//所属预约编号
+    private List<Cireport> cireports;
 }

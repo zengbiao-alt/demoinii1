@@ -7,6 +7,27 @@
         values (#{orderId,jdbcType=INTEGER }, #{orderDate,jdbcType=DATE},
                 #{userId,jdbcType=VARCHAR}, #{hpId,jdbcType=INTEGER},#{smId,jdbcType=INTEGER},#{state,jdbcType=INTEGER})
     </insert>
+    <update id="updateOrdersState" >
+        update orders
+        <set >
+            <if test="orderDate != null" >
+                orderDate= #{orderDate,jdbcType=DATE},
+            </if>
+            <if test="userId != null" >
+                userId= #{userId,jdbcType=CHAR},
+            </if>
+            <if test="hpId!= null" >
+                hpId= #{hpId,jdbcType=INTEGER},
+            </if>
+            <if test="smId!= null" >
+                smId= #{smId,jdbcType=INTEGER},
+            </if>
+            <if test="state!= null" >
+                state= #{state,jdbcType=INTEGER}
+            </if>
+        </set>
+        where orderId=#{orderId}
+    </update>
     <delete id="removeOrders">
         delete from orders where orderId=#{orderId};
     </delete>
@@ -21,5 +42,8 @@
         select orderId,orderDate,
                userId,hpId,smId,state
 from orders where orderId=#{orderId}
+    </select>
+    <select id="listOrders" resultType="com.example.demoinii.po.Orders">
+        select orderId,orderDate,hpId,smId from orders
     </select>
 </mapper>

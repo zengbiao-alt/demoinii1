@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demoinii.mapper.ciDetailedReportMapper">
+    <resultMap type="com.example.demoinii.po.Cidetailedreport" id="OrderIdAndCided" >
+        <!--检查项项目信息明细-->
+            <id column="cidrId" property="cidrId" />
+            <result column="name" property="name" />
+            <result column="unit" property="unit" />
+            <result column="minrange" property="minrange" />
+            <result column="maxrange" property="maxrange" />
+            <result column="normalValue" property="normalValue" />
+            <result column="normalValueString" property="normalValueString" />
+            <result column="type" property="type" />
+            <result column="value" property="value" />
+            <result column="isError" property="isError" />
+            <result column="ciId" property="ciId" />
+            <result column="orderId" property="orderId" />
+        <collection property="cireports" ofType="com.example.demoinii.po.Cireport">
+            <id column="cirId" property="cirId"/>
+            <result column="ciId" property="ciId"/>
+            <result column="ciName" property="ciName"/>
+            <result column="orderId" property="orderId"/>
+        </collection>
+    </resultMap>
+    <update id="updateCiDetailedReport" >
+        update cireport n,cidetailedreport m
+        <set >
+            <if test="n.cirId!= null" >
+                n.cirId=#{cirId,jdbcType=INTEGER},
+            </if>
+            <if test="n.ciId != null" >
+                n.ciId= #{ciId,jdbcType=INTEGER},
+            </if>
+            <if test="m.name != null" >
+                m.name= #{name,jdbcType=CHAR}
+            </if>
+        </set>
+        where n.oderId=#{m.oderId}
+    </update>
+
+</mapper>

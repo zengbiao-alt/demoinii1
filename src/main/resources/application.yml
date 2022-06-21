@@ -5,7 +5,7 @@ server:
 logging:
   level:
     org.springframework: debug
-    com.neusoft.tijian.mapper: debug
+    com.example.demoinii.mapper: debug
 
 spring:
   datasource:
@@ -15,5 +15,7 @@ spring:
     password: 123456
 
 mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.neusoft.tijian.po,com.neusoft.tijian.dto
+  mapper-locations: mapper/*.xml
+  type-aliases-package: com.example.demoinii.po,com.example.demoinii.dto
+
+logging.level.org.springframework.boot.autoconfigure: error

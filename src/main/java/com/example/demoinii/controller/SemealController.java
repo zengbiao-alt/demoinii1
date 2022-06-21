@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @RequestMapping("/setmeal")
@@ -24,5 +25,11 @@ public class SemealController {
         //通过主键进行查询
         Setmeal setmeal1 = setmealService.selectSetBySeId(setmeal);
         return Result.success(setmeal1);
+    }
+    //查询所有的套餐类型列表
+    @PostMapping("/listSetmeal")
+    public Result  listSetmeal(){
+        List<Setmeal> setmeals=setmealService.listSetmeal();
+        return  Result.success(setmeals);
     }
 }

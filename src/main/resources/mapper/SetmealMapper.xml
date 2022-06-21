@@ -5,4 +5,7 @@
     <select id="selectSetBySeId" resultType="com.example.demoinii.po.Setmeal" >
         select  sname,type,price from Setmeal where smId=#{smId}
     </select>
+    <select id="listSetmeal" resultType="com.example.demoinii.po.Setmeal">
+        select sname,type,price from Setmeal ;
+    </select>
 </mapper>
