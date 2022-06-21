@@ -25,5 +25,12 @@ public class Cidetailedreport {
     private int isError;//此项是否异常(0:无异常:1:异常)
     private int ciId;//所属检查项报告编号
     private int orderId;//所属预约编号
-    private List<Cireport> cireports;
+    //检查项报告编号
+    private int cirId;
+    //检查项编号
+    private int ciId1;
+    //检查项名称
+    private String ciName;
+    //所属预约编号
+    private int orderId1;
 }

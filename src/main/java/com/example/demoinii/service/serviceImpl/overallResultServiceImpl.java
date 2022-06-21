@@ -1,5 +1,7 @@
 package com.example.demoinii.service.serviceImpl;
 
+import com.example.demoinii.exception.MallExcetion;
+import com.example.demoinii.exception.MallExcptionEum;
 import com.example.demoinii.mapper.LoginMapper;
 import com.example.demoinii.mapper.overallResultMapper;
 import com.example.demoinii.po.overallResult;
@@ -20,6 +22,12 @@ public class overallResultServiceImpl implements overallResultService {
 
     @Override
     public int  saveOverallResult(overallResult overallResults) {
+        //首先判断的是添加的信息是否已经存在
+        List<overallResult> overallResultList=overallresultMapper.SelectOverResultById(overallResults);
+        if(overallResultList!=null)
+        {
+            throw new MallExcetion(MallExcptionEum.REGIST_PHONE);
+        }
         return overallresultMapper.saveOverallResult(overallResults);
     }
 

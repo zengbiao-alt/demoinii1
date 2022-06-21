@@ -13,7 +13,7 @@ public class ciDetailedReportServiceImpl implements ciDetailedReportService {
     @Autowired
     private ciDetailedReportMapper ciDetailedReportMappers;
     @Override
-    public int updateCiDetailedReport(List<Cidetailedreport> cidetailedreport) {
+    public int updateCiDetailedReport(Cidetailedreport cidetailedreport) {
         return ciDetailedReportMappers.updateCiDetailedReport( cidetailedreport);
     }
 }

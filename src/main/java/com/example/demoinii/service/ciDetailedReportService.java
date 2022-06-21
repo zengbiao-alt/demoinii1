@@ -5,5 +5,5 @@ import com.example.demoinii.po.Cidetailedreport;
 import java.util.List;
 
 public interface ciDetailedReportService {
-   int  updateCiDetailedReport(List<Cidetailedreport> cidetailedreport);
+   int  updateCiDetailedReport(Cidetailedreport cidetailedreport);
 }

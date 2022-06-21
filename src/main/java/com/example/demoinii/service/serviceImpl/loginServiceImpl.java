@@ -1,6 +1,6 @@
 package com.example.demoinii.service.serviceImpl;
 
-import com.example.demoinii.po.User;
+import com.example.demoinii.po.Users;
 import com.example.demoinii.exception.MallExcetion;
 import com.example.demoinii.exception.MallExcptionEum;
 import com.example.demoinii.mapper.LoginMapper;
@@ -14,18 +14,24 @@ public class loginServiceImpl implements LoginService {
    @Autowired
    private LoginMapper  loginMapper;
     @Override
-    public int  userRegist(User user) {
-        int regist=loginMapper.userRegist(user);
-        if(regist==0)
+    public int  userRegist(Users user) {
+        //首先我们进行判断该用户是都已经注册
+        Users user1=loginMapper.getUsersById(user);
+        if(user1!=null)
         {
-            throw  new MallExcetion(MallExcptionEum.INSERT_FAILED);
+           throw   new MallExcetion(MallExcptionEum.REGIST_PHONE);
         }
-        return regist;
-
+        else {
+            int regist = loginMapper.userRegist(user);
+            if (regist == 0) {
+                throw new MallExcetion(MallExcptionEum.INSERT_FAILED);
+            }
+            return regist;
+        }
     }
 
-    public User userLogin(User user) {
-        User user1=loginMapper.userLogin(user.getUserId(),user.getPassword());
+    public Users userLogin(Users user) {
+        Users user1=loginMapper.userLogin(user);
         if(user1==null)
         {
             throw  new MallExcetion(MallExcptionEum.LOGIN_FAILED);
@@ -35,12 +41,8 @@ public class loginServiceImpl implements LoginService {
     }
 
     @Override
-    public User userFindAll(User user) {
-        User user1=loginMapper.userFindAll(user.getUserId());
-        if(user1==null)
-        {
-            throw  new MallExcetion(MallExcptionEum.USEID_NOT_EXIST);
-        }
+    public Users getUsersById(Users user) {
+        Users user1=loginMapper.getUsersById(user);
         return user1;
     }
 }

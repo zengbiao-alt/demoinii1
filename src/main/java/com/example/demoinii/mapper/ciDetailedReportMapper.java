@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface ciDetailedReportMapper {
-    int updateCiDetailedReport(List<Cidetailedreport> cidetailedreport);
+    int updateCiDetailedReport(Cidetailedreport cidetailedreport);
 }

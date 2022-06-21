@@ -20,23 +20,17 @@ public class ordersController {
     @Autowired
     public ordersService orderservice;
     @PostMapping("/getOrdersByUserId")
+
     public Result findRegistByPhone(@RequestBody Orders order, HttpSession session)
     {
         int result=orderservice.findRegistByPhone(order);
-        if(result==1)
-        {
-            return Result.error(MallExcptionEum.REGIST_PHONE);
-        }
        return Result.success(result);
     }
+    //添加总检的信息
     @PostMapping("/saveOrders")
-    public Result getUsersById(@RequestBody Orders orders)
+    public Result saveOrders(@RequestBody Orders orders)
     {
         int  result=orderservice.saveOrders(orders);
-        if(result==1)
-        {
-            return Result.error(MallExcptionEum.ORDER_EXIST);
-        }
         return Result.success(result);
     }
     @PostMapping("/listOrdersByUserId")
@@ -63,10 +57,6 @@ public class ordersController {
     public Result updateOrdersState(@RequestBody Orders orders)
     {
         int status=orderservice.updateOrdersState(orders);
-        if(status==0)
-        {
-            return Result.error(MallExcptionEum.UPDATE_FAILED);
-        }
         return Result.success(status);
     }
 

@@ -29,7 +29,7 @@ public class overallResultController {
     }
     @PostMapping("saveOverallResult")
     public  Result saveOverallResult(@RequestBody overallResult overallResults) {
-        //根据体检预约编号查询总检结论
+        //添加总检结论信息
       int overallResultList = overallResultServices.saveOverallResult(overallResults);
         return Result.success(overallResultList);
     }

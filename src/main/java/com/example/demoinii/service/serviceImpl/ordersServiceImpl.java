@@ -1,5 +1,8 @@
 package com.example.demoinii.service.serviceImpl;
 
+import com.example.demoinii.common.Result;
+import com.example.demoinii.exception.MallExcetion;
+import com.example.demoinii.exception.MallExcptionEum;
 import com.example.demoinii.mapper.OrderMapper;
 import com.example.demoinii.po.Orders;
 import com.example.demoinii.po.OrdersPageRequestDto;
@@ -18,12 +21,29 @@ public class ordersServiceImpl implements ordersService {
 
     @Override
     public int findRegistByPhone(Orders order) {
-      return  orderMapper.findRegistByPhone(order);
+     int result= orderMapper.findRegistByPhone(order);
+        if(result==1)
+        {
+            throw new MallExcetion(MallExcptionEum.REGIST_PHONE);
+        }
+        return result;
     }
 
     @Override
     public int saveOrders(Orders orders) {
-        return  orderMapper.saveOrders(orders);
+        //首先首先判断添加的信息是是否已经存在
+       Orders orders1= orderMapper.getOrdersById(orders);
+       if(orders1!=null)
+       {
+           throw new MallExcetion(MallExcptionEum.ORDER_EXIST);
+       }
+       else {
+           int result = orderMapper.saveOrders(orders);
+           if (result == 1) {
+               throw new MallExcetion(MallExcptionEum.ORDER_SAVE_FAIL);
+           }
+           return result;
+       }
     }
 
     @Override
@@ -33,7 +53,21 @@ public class ordersServiceImpl implements ordersService {
 
     @Override
     public int removeOrders(Orders orders) {
-       return orderMapper.removeOrders(orders);
+        //首先判断该订单是否存在
+        int status=orderMapper.removeOrders(orders);
+        if(status==0)
+        {
+            throw new MallExcetion(MallExcptionEum.ORDER_NOT_EXISTS);
+        }
+        else {
+            int state=orderMapper.removeOrders(orders);
+            if(state==0)
+            {
+                throw new MallExcetion(MallExcptionEum.DELETE_FAILED);
+            }
+            return state;
+        }
+
     }
 
     @Override
@@ -53,7 +87,19 @@ public class ordersServiceImpl implements ordersService {
 
     @Override
     public int updateOrdersState(Orders orders) {
-        return  orderMapper.updateOrdersState(orders);
+        //更新的时候需要判断的是该订单是否存在
+        int status=orderMapper.removeOrders(orders);
+        if(status==0)
+        {
+            throw new MallExcetion(MallExcptionEum.ORDER_NOT_EXISTS);
+        }
+        else {
+            int status1 = orderMapper.updateOrdersState(orders);
+            if (status1 == 0) {
+                throw new MallExcetion(MallExcptionEum.UPDATE_FAILED);
+            }
+            return status1;
+        }
     }
 
 

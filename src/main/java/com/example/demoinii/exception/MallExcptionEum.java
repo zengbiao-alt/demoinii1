@@ -30,7 +30,9 @@ public enum MallExcptionEum {
     USEID_NOT_EXIST(10019,"用户手机电话号码未注册"),
     REGIST_PHONE(10020,"用户手机号码已注册"),
     ORDER_EXIST(10021,"订单信息已存在"),
-    UPDATE_FAIL(10022,"更新的失败");
+    UPDATE_FAIL(10022,"更新的失败"),
+    ORDER_SAVE_FAIL(10023,"添加失败"),
+    overallResult_EXIST(10024,"总结论信息已经存在");
     ;
 
     MallExcptionEum(Integer status, String msg) {

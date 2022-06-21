@@ -19,7 +19,7 @@ public class ciDetailedReportController {
     @Autowired
     private ciDetailedReportService ciDetailedReportService;
     @PostMapping("/updateCiDetailedReport")
-    public Result updateCiDetailedReport(@RequestBody List<Cidetailedreport> cidetailedreport)
+    public Result updateCiDetailedReport(@RequestBody Cidetailedreport cidetailedreport)
     {
         int status=ciDetailedReportService.updateCiDetailedReport(cidetailedreport);
         return Result.success(status);
