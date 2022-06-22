@@ -19,7 +19,7 @@ public class userController {
     private LoginService loginService;
     /**
      * @description: 进行登录的登录传递的数据的数据是以接口的参数的形式进行传递
-     * @author: 曾彪
+     * @author: 周敏泽
      * @date:  上午10:42
      * @param: * @param :Users
      * @return: * @return: Result
@@ -49,7 +49,7 @@ public class userController {
 
     /**
      * @description: 进行手机号码的验证
-     * @author: 曾彪
+     * @author: 周敏泽
      * @date:  上午10:42
      * @param: * @param :Users
      * @return: * @return: Result
@@ -74,7 +74,7 @@ public class userController {
 
     /**
      * @description: 进行用户信息的注册
-     * @author: 曾彪
+     * @author: 周敏泽
      * @date:  上午10:42
      * @param: * @param :Users
      * @return: * @return: Result
