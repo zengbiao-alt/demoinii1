@@ -55,6 +55,7 @@ public class hospitalController {
     {
         Hospital hospital1=hospitalservice.getHospitalById(hospital);
         return Result.success(hospital1);
+        
     }
 
 }

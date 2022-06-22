@@ -111,13 +111,13 @@ public class ordersController {
     }
 
     /**
-     * @description: ：根据体检预约编号更新状态
+     * @description: ：分页查询所有的订单内容
      * @author: 曾彪
      * @date:  上午10:42
      * @param: * @param :OrdersPageRequestDto
      * @return: * @return: Result
      **/
-    @ApiOperation("：根据体检预约编号更新状态")
+    @ApiOperation("：分页查询所有的订单内容")
     @PostMapping("listOrders")
     public Result listOrders(@RequestBody OrdersPageRequestDto ordersPageRequestDto)
     {
