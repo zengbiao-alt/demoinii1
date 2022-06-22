@@ -28,4 +28,7 @@
     select hpId,name,
     picture,telephone,address,businessHours,deadline,rule,state from hospital where hpId=#{hpId};
     </select>
+    <select id="getHospitalById1" >
+        select rule from hospital
+    </select>
 </mapper>

@@ -16,6 +16,6 @@ spring:
 
 mybatis:
   mapper-locations: mapper/*.xml
-  type-aliases-package: com.example.demoinii.po,com.example.demoinii.dto
+  type-aliases-package: com.example.demoinii.po
 
 logging.level.org.springframework.boot.autoconfigure: error

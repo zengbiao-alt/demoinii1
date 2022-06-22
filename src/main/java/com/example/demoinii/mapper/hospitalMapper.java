@@ -11,4 +11,5 @@ public interface hospitalMapper {
     int updateOrdersState(Hospital hospital);
     //写一个进行查询医院信息的方法，返回值得类型为hopital
     Hospital getHospitalById(Hospital hospital);
+    String[] getHospitalById1(int hpId);
 }

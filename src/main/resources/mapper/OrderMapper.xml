@@ -46,4 +46,7 @@ from orders where orderId=#{orderId}
     <select id="listOrders" resultType="com.example.demoinii.po.Orders">
         select orderId,orderDate,hpId,smId from orders
     </select>
+    <select id="listOrdersAppointmentNumber" resultType="com.example.demoinii.dto.CalendarResponseDto">
+        select count(userId) from orders
+    </select>
 </mapper>
