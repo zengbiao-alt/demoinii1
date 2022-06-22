@@ -32,8 +32,9 @@ public enum MallExcptionEum {
     ORDER_EXIST(10021,"订单信息已存在"),
     UPDATE_FAIL(10022,"更新的失败"),
     ORDER_SAVE_FAIL(10023,"添加失败"),
-    overallResult_EXIST(10024,"总结论信息已经存在");
-    ;
+    overallResult_EXIST(10024,"总结论信息已经存在"),
+    HOPISTAL_QURRYFAIL(10025,"查询失败"),
+    HOPISTAL_non_existent(100026,"医院信息不存在");
 
     MallExcptionEum(Integer status, String msg) {
         this.status = status;

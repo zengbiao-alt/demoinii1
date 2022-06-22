@@ -21,12 +21,12 @@ public class ordersServiceImpl implements ordersService {
 
     @Override
     public int findRegistByPhone(Orders order) {
-     int result= orderMapper.findRegistByPhone(order);
-        if(result==1)
-        {
+        int result = orderMapper.findRegistByPhone(order);
+        if (result == 0) {
             throw new MallExcetion(MallExcptionEum.REGIST_PHONE);
+        } else {
+            return result;
         }
-        return result;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class ordersServiceImpl implements ordersService {
        }
        else {
            int result = orderMapper.saveOrders(orders);
-           if (result == 1) {
+           if (result == 0) {
                throw new MallExcetion(MallExcptionEum.ORDER_SAVE_FAIL);
            }
            return result;
@@ -54,7 +54,7 @@ public class ordersServiceImpl implements ordersService {
     @Override
     public int removeOrders(Orders orders) {
         //首先判断该订单是否存在
-        int status=orderMapper.removeOrders(orders);
+        int status=orderMapper.findRegistByPhone(orders);
         if(status==0)
         {
             throw new MallExcetion(MallExcptionEum.ORDER_NOT_EXISTS);
@@ -88,7 +88,7 @@ public class ordersServiceImpl implements ordersService {
     @Override
     public int updateOrdersState(Orders orders) {
         //更新的时候需要判断的是该订单是否存在
-        int status=orderMapper.removeOrders(orders);
+        int status=orderMapper.findRegistByPhone(orders);
         if(status==0)
         {
             throw new MallExcetion(MallExcptionEum.ORDER_NOT_EXISTS);

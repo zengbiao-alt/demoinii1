@@ -33,7 +33,7 @@
     </delete>
 
     <select id="findRegistByPhone" resultType="java.lang.Integer">
-        select OrderId,OrderDate from orders where userId=#{userId};
+        select OrderId,OrderDate from orders where userId=#{userId} limit 1;
     </select>
     <select id="listOrdersByUserId" resultType="com.example.demoinii.po.Orders">
         select orderId,orderDate,hpId,smId from orders where userId=#{userId} and state=#{state};

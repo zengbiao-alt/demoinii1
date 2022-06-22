@@ -25,11 +25,8 @@
     <update id="updateCiDetailedReport" >
         update cireport as n,cidetailedreport as m
         <set >
-            <if test="cirId!= null" >
-                n.cirId=#{cirId,jdbcType=INTEGER},
-            </if>
-            <if test="ciId1!= null" >
-                n.ciId= #{ciId1,jdbcType=INTEGER},
+            <if test="ciId!= null" >
+                n.ciId= #{ciId,jdbcType=INTEGER},
             </if>
             <if test="name != null" >
                 m.name= #{name,jdbcType=CHAR}

@@ -5,6 +5,7 @@ import com.example.demoinii.po.Setmeal;
 import com.example.demoinii.po.overallResult;
 import com.example.demoinii.service.SetmealService;
 import com.example.demoinii.service.overallResultService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,30 +21,55 @@ import java.util.List;
 public class overallResultController {
     @Autowired
     public overallResultService overallResultServices;
-    @PostMapping("/listOverallResultByOrderId")
+    /**
+     * @description: 通过体检预约表编号查询总检结论
+     * @author:赵浩澄
+     * @date:  上午10:42
+     * @param: * @param overallResult:
+     * @return: * @return:Result
+     **/
+    @PostMapping("stOverallResultByOrderId")
+    @ApiOperation("通过体检预约表编号查询总检结论")
     public Result SelectOverResultById(@RequestBody overallResult overallresult , HttpSession session)
     {
-        //通过体检预约表编号查询总检结论
-       List<overallResult> overallresult1 = overallResultServices.SelectOverResultById(overallresult);
+        List<overallResult> overallresult1 = overallResultServices.SelectOverResultById(overallresult);
         return Result.success(overallresult1);
     }
     @PostMapping("saveOverallResult")
     public  Result saveOverallResult(@RequestBody overallResult overallResults) {
-        //添加总检结论信息
-      int overallResultList = overallResultServices.saveOverallResult(overallResults);
+        /**
+         * @description: 添加总检结论信息
+         * @author:赵浩澄
+         * @date:  上午10:42
+         * @param: * @param overallResult:
+         * @return: * @return:Result
+         **/
+        int overallResultList = overallResultServices.saveOverallResult(overallResults);
         return Result.success(overallResultList);
     }
     @PostMapping("updateOverallResult")
     public Result updateOverallResult(@RequestBody overallResult overallResults)
     {
-        //更新总检结论信息
+        /**
+         * @description: 更新总检结论信息
+         * @author:赵浩澄
+         * @date:  上午10:42
+         * @param: * @param overallResult:
+         * @return: * @return:Result
+         **/
         int overallResultList=overallResultServices.updateOverallResult(overallResults);
         return Result.success(overallResultList);
     }
     @PostMapping("removeOverallResult")
     public Result removeOverallResult(@RequestBody overallResult overallResults)
     {
-        //根据总检信息表编号OverallResult对象
+        /**
+         * @description: 根据总检信息表编号OverallResult对象
+         * @author:赵浩澄
+         * @date:  上午10:42
+         * @param: * @param overallResult:
+         * @return: * @return:Result
+         **/
         int overallResultList=overallResultServices.removeOverallResult(overallResults);
         return Result.success(overallResultList);
     }

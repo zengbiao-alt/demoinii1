@@ -1,5 +1,7 @@
 package com.example.demoinii.service.serviceImpl;
 
+import com.example.demoinii.exception.MallExcetion;
+import com.example.demoinii.exception.MallExcptionEum;
 import com.example.demoinii.mapper.LoginMapper;
 import com.example.demoinii.mapper.SetmealMapper;
 import com.example.demoinii.po.Setdetailed;
@@ -17,13 +19,23 @@ public class SetmealServiceImpl implements SetmealService {
     private SetmealMapper setmealMapper;
     @Override
     public Setmeal selectSetBySeId(Setmeal setmeal) {
-      Setmeal setmeal1=setmealMapper.selectSetBySeId(setmeal);
-      return setmeal1;
+        Setmeal setmeal1 = setmealMapper.selectSetBySeId(setmeal);
+        if (setmeal1 == null) {
+            throw new MallExcetion(MallExcptionEum.HOPISTAL_QURRYFAIL);
+        } else {
+            return setmeal1;
+        }
     }
 
     @Override
     public List<Setmeal> listSetmeal() {
         List<Setmeal> setmeal=setmealMapper.listSetmeal();
-        return setmeal;
+        if(setmeal==null)
+        {
+            throw new MallExcetion(MallExcptionEum.HOPISTAL_QURRYFAIL);
+        }
+        else {
+            return setmeal;
+        }
     }
 }

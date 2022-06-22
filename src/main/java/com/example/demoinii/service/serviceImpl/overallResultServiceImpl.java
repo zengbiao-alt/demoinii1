@@ -17,7 +17,14 @@ public class overallResultServiceImpl implements overallResultService {
     private overallResultMapper overallresultMapper;
     @Override
     public List<overallResult> SelectOverResultById(overallResult overallresult) {
-       return overallresultMapper.SelectOverResultById(overallresult);
+        List<overallResult> overallResultList=overallresultMapper.SelectOverResultById(overallresult);
+        if(overallResultList==null)
+        {
+            throw  new MallExcetion(MallExcptionEum.HOPISTAL_QURRYFAIL);
+        }
+        else {
+            return overallResultList;
+        }
     }
 
     @Override
@@ -40,11 +47,41 @@ public class overallResultServiceImpl implements overallResultService {
 
     @Override
     public int updateOverallResult(overallResult overallResults) {
-      return overallresultMapper.updateOverallResult(overallResults);
+        //首先判断该数据是否存在
+        List<overallResult> overallResultList=overallresultMapper.SelectOverResultById(overallResults);
+        if(overallResultList!=null)
+        {
+            throw new MallExcetion(MallExcptionEum.REGIST_PHONE);
+        }
+        else
+        {
+            int status=overallresultMapper.updateOverallResult(overallResults);
+            if(status==0)
+            {
+                throw new MallExcetion(MallExcptionEum.UPDATE_FAIL);
+            }
+            return  status;
+        }
     }
 
     @Override
     public int removeOverallResult(overallResult overallResults) {
-        return overallresultMapper.removeOverallResult(overallResults);
+
+        //首先判断该数据是否存在
+        List<overallResult> overallResultList=overallresultMapper.SelectOverResultById(overallResults);
+        if(overallResultList!=null)
+        {
+            throw new MallExcetion(MallExcptionEum.REGIST_PHONE);
+        }
+        else {
+            int status=overallresultMapper.removeOverallResult(overallResults);
+            if(status==0)
+            {
+                throw  new MallExcetion(MallExcptionEum.DELETE_FAILED );
+            }
+            else {
+                return status;
+            }
+        }
     }
 }

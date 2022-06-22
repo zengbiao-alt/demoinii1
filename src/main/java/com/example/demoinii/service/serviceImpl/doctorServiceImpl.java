@@ -1,5 +1,7 @@
 package com.example.demoinii.service.serviceImpl;
 
+import com.example.demoinii.exception.MallExcetion;
+import com.example.demoinii.exception.MallExcptionEum;
 import com.example.demoinii.mapper.doctorMapper;
 import com.example.demoinii.po.Doctor;
 import com.example.demoinii.service.doctorService;
@@ -12,6 +14,14 @@ public class doctorServiceImpl  implements doctorService {
     private doctorMapper doctorMappers;
     @Override
     public Doctor getDoctorByCodeByPass(Doctor doctor) {
-        return doctorMappers.getDoctorByCodeByPass(doctor);
+
+        Doctor doctor1=doctorMappers.getDoctorByCodeByPass(doctor);
+        if(doctor1==null)
+        {
+            throw  new MallExcetion(MallExcptionEum.LOGIN_FAILED);
+        }
+        else {
+            return  doctor1;
+        }
     }
 }

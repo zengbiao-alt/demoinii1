@@ -4,24 +4,28 @@
     <update id="updateOrdersState">
         update hospital
         <set >
-            <if test="name != null" >
-                name= #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="picture != null" >
-                picture= #{picture,jdbcType=CHAR},
-            </if>
-            <if test="telephone != null" >
-                telephone= #{telephone,jdbcType=CHAR},
-            </if>
-            <if test="address!= null" >
-                address= #{address,jdbcType=CHAR},
-            </if>
+        <if test="name != null" >
+            name= #{name,jdbcType=VARCHAR},
+        </if>
+        <if test="picture != null" >
+            picture= #{picture,jdbcType=CHAR},
+        </if>
+        <if test="telephone != null" >
+            telephone= #{telephone,jdbcType=CHAR},
+        </if>
+        <if test="address!= null" >
+            address= #{address,jdbcType=CHAR},
+        </if>
         </set>
         where hpId=#{hpId}
     </update>
 
     <select id="listHospital" resultType="com.example.demoinii.po.Hospital">
-        select hpId,name,
-               picture,telephone,address,businessHours,deadline,rule,state from hospital where state=#{state};
+    select hpId,name,
+    picture,telephone,address,businessHours,deadline,rule,state from hospital where state=#{state} limit 1;
+    </select>
+    <select id="getHospitalById" resultType="com.example.demoinii.po.Hospital">
+    select hpId,name,
+    picture,telephone,address,businessHours,deadline,rule,state from hospital where hpId=#{hpId};
     </select>
 </mapper>
